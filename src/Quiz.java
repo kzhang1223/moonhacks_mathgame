@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 
 public class Quiz {
-    Player player;
+    Player p1;
+    Player p2;
     ArrayList<Question> questions;
     ArrayList<Integer> answers;
 
-    public Quiz(Player player) {
-        this.player = player;
+    public Quiz(Player p1, Player p2) {
+        this.p1 = p1;
+        this.p2 = p2;
         questions = new ArrayList<>();
         answers = new ArrayList<>();
     }
@@ -36,7 +38,8 @@ public class Quiz {
     }
 
     // setters and getters
-    Player getPlayer() { return player;}
+    Player getPlayer1() { return p1; }
+    Player getPlayer2() { return p2; }
     ArrayList<Question> getQuestions() { return questions; }
     ArrayList<Integer> getAnswers() { return answers; }
 
