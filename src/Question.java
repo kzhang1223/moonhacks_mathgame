@@ -4,28 +4,31 @@
 public class Question {
     int a;
     int b;
-    char operation;
+    String operation;
     String question;
 
-    public Question(int a, int b, char operation) {
+    public Question(int a, int b, String operation) {
         this.a = a;
         this.b = b;
         this.operation = operation;
     }
 
-    void toString(int a, int b, char operation) {
+    @Override
+    public
+    String toString() {
         String astr = Integer.toString(a);
         String bstr = Integer.toString(b);
-        question = astr + " " + operation + " " + bstr;
+        question = astr + " " + operation + " " + bstr + "= ?";
+        return question;
     }
 
     // getters and setters
     int getA() { return a; }
     int getB() { return b; }
-    char getOperation() { return operation; }
+    String getOperation() { return operation; }
     String getQuestion() { return question; }
 
     void setA(int a) { this.a = a; }
     void setB(int b) { this.b = b; }
-    void setOperation(char operation) { this.operation = operation; }
+    void setOperation(String operation) { this.operation = operation; }
 }

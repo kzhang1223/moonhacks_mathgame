@@ -48,6 +48,7 @@ public class Game {
 
         System.out.println("Ok, " + numQuestions + " questions, let's see who comes out on top!");
 
+        quiz.createQuiz();
         startGame();
     }
 
@@ -62,5 +63,10 @@ public class Game {
         }
 
         System.out.println("Start!!");
+
+        for (Question q : quiz.questions) {
+            System.out.println(q.toString());
+            
+        }
     }
 }
