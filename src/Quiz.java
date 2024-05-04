@@ -5,12 +5,14 @@ public class Quiz {
     Player p2;
     ArrayList<Question> questions;
     ArrayList<Integer> answers;
+    int numQuestions;
 
-    public Quiz(Player p1, Player p2) {
+    public Quiz(Player p1, Player p2, int numQuestions) {
         this.p1 = p1;
         this.p2 = p2;
         questions = new ArrayList<>();
         answers = new ArrayList<>();
+        this.numQuestions = numQuestions;
     }
 
     void addQuestion(Question q) {
@@ -43,5 +45,6 @@ public class Quiz {
     ArrayList<Question> getQuestions() { return questions; }
     ArrayList<Integer> getAnswers() { return answers; }
 
-    void setPlayer(Player p) { player = p; }
+    void setPlayerOne(Player p) { p1 = p; }
+    void setPlayerTwo(Player p) { p2 = p; }
 }

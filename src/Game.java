@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Game {
     private Quiz quiz;
@@ -39,5 +40,27 @@ public class Game {
 
         String player2name = input.next();
         p2 = new Player(player2name, 0);
+
+        System.out.println(player1name + ", " + player2name + ", it is time to start the game! How many questions would you like to race with?");
+        String numQuestions = input.next();
+
+        quiz = new Quiz(p1, p2, Integer.parseInt(numQuestions));
+
+        System.out.println("Ok, " + numQuestions + " questions, let's see who comes out on top!");
+
+        startGame();
+    }
+
+    private void startGame() {
+        for (int x = 3; x > 0; x--) {
+            System.out.println(Integer.toString(x));
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch(InterruptedException e) {
+                System.out.println("Waiting is too hard...");
+            }
+        }
+
+        System.out.println("Start!!");
     }
 }
