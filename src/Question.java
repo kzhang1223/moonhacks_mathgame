@@ -18,7 +18,7 @@ public class Question {
     String toString() {
         String astr = Integer.toString(a);
         String bstr = Integer.toString(b);
-        question = astr + " " + operation + " " + bstr + "= ?";
+        question = astr + " " + operation + " " + bstr + " = ?";
         return question;
     }
 

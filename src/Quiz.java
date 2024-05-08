@@ -35,9 +35,37 @@ public class Quiz {
             Question q = new Question(a, b, operations.get(index));
             questions.add(q);
 
-            int answer = a + b;
+            int answer = 0;
+            switch (operations.get(index)) {
+                case "+":
+                    answer = a + b;
+                    break;
+                case "-":
+                    answer = a - b;
+                    break;
+                case "x":
+                    answer = a * b;
+                    break;
+                case "/":
+                    answer = a / b;
+                    break;
+                default:
+                    break;
+            }
+            
             answers.add(answer);
         }
+    }
+
+    void calculateScore(Player p) {
+        int score = 0;
+        for (int x = 0; x < numQuestions; x++) {
+            int answer = Integer.parseInt(p.answers.get(x));
+            if (answer == answers.get(x)) {
+                score++;
+            }
+        }
+        p.score = score;
     }
 
     void removeQuestion(Question target) {
