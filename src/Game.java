@@ -10,7 +10,7 @@ public class Game {
     public Game() {
         // initialize here
         input = new Scanner(System.in);
-        System.out.println("Welcome to math. Would you like to play a game?");
+        System.out.println("Welcome to math. Would you like to play a game? (yes or no)");
         runApplication();
     }
 
@@ -30,7 +30,12 @@ public class Game {
     }
 
     private void continueWithGame() {
-        System.out.println("Yippee! The rules are simple. Two players. Do the math and whoever finishes first wins. However... if your score is lower even if you finished first... you will still lose. So be careful out there!");
+        System.out.println("Yippee! The rules are simple. Two players. Do the math and has a faster time wins. We'll have a random selection of addition, subtraction, multiplcation and division! Negatives are allowed... but numbers only go from 0 - 9!");
+        waitASecond();
+        waitASecond();
+        System.out.println("However... if your score is lower even if you finished first... you will still lose. So be careful out there!");
+        waitASecond();
+        waitASecond();
         System.out.println("First of all, player 1 enter your name.");
 
         String player1name = input.next();
@@ -47,6 +52,8 @@ public class Game {
         quiz = new Quiz(p1, p2, Integer.parseInt(numQuestions));
 
         System.out.println("Ok, " + numQuestions + " questions, " + player1name + ", you will be going first!");
+        waitASecond();
+        waitASecond();
 
         quiz.createQuiz();
         startGame();
@@ -55,39 +62,24 @@ public class Game {
     private void startGame() {
         for (int x = 3; x > 0; x--) {
             System.out.println(Integer.toString(x));
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch(InterruptedException e) {
-                System.out.println("Waiting is too hard...");
-            }
+            waitASecond();
         }
 
         System.out.println("Start!!");
         
         actualGame(p1);
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch(InterruptedException e) {
-            System.out.println("Waiting is too hard...");
-        }
+        waitASecond();
 
         System.out.println("Good job! Your time now " + p2.name + "!");
+        waitASecond();
 
         for (int x = 3; x > 0; x--) {
             System.out.println(Integer.toString(x));
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch(InterruptedException e) {
-                System.out.println("Waiting is too hard...");
-            }
+            waitASecond();
         }
 
         actualGame(p2);
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch(InterruptedException e) {
-            System.out.println("Waiting is too hard...");
-        }
+        waitASecond();
 
         endGame();
     }
@@ -96,10 +88,10 @@ public class Game {
         long questionTime = 0;
         for (Question q : quiz.questions) {
 
-            long startTime = System.currentTimeMillis();
+            int startTime = (int) System.currentTimeMillis() / 1000;
             System.out.println(q.toString());
             String playerAnswer = input.next();
-            long endTime = System.currentTimeMillis();
+            int endTime = (int) System.currentTimeMillis() / 1000;
             
             questionTime += (endTime - startTime);
             p.answers.add(playerAnswer);
@@ -110,18 +102,12 @@ public class Game {
     void endGame() {
         System.out.println("Good job everyone! Let me tabulate the score now...");
         quiz.calculateScore(p1);
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch(InterruptedException e) {
-            System.out.println("Waiting is too hard...");
-        }
+        waitASecond();
+        waitASecond();
         System.out.println("Almost done!");
         quiz.calculateScore(p2);
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch(InterruptedException e) {
-            System.out.println("Waiting is too hard...");
-        }
+        waitASecond();
+        waitASecond();
 
         // // for testing 
         // for (int x = 0; x < quiz.numQuestions; x++) {
@@ -129,43 +115,57 @@ public class Game {
         // }
 
 
-        System.out.println("Alright! The results are in... " + p1.name + " you got a score of " + Integer.toString(p1.score) + ".");
+        System.out.println("Alright! The results are in... ");
+        waitASecond();
+        waitASecond();
+        System.out.println(p1.name + " you got a score of " + Integer.toString(p1.score) + ".");
+        waitASecond();
+        waitASecond();
         System.out.println(p2.name + " you got a score of " + Integer.toString(p2.score) + ".");
+        waitASecond();
+        waitASecond();
         if (p1.score > p2.score) {
             System.out.println("Congrats " + p1.name + " you have won!");
+            waitASecond();
             System.out.println("Ending game now... Good-bye!");
             System.exit(0);
         } else if (p1.score < p2.score) {
             System.out.println("Congrats " + p2.name + " you have won!");
+            waitASecond();
             System.out.println("Ending game now... Good-bye!");
             System.exit(0);
         } else {
             System.out.println("Hm... it seems we have a tie... No worry! Let us take a look at the time y'all took to finish the quiz");
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch(InterruptedException e) {
-                System.out.println("Waiting is too hard...");
-            }
-            System.out.println(p1.name + " your time was " + Long.toString(p1.time));
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch(InterruptedException e) {
-                System.out.println("Waiting is too hard...");
-            }
-            System.out.println(p2.name + " your time was " + Long.toString(p2.time));
+            waitASecond();
+            waitASecond();
+            System.out.println(p1.name + " your time was " + Long.toString(p1.time) + " s");
+            waitASecond();
+            waitASecond();
+            System.out.println(p2.name + " your time was " + Long.toString(p2.time) + " s");
+            waitASecond();
 
             if (p1.time > p2.time) {
-                System.out.println("Hooray! " + p1.name + " you have won!");
+                System.out.println("Hooray! " + p2.name + " you have won!");
+                waitASecond();
                 System.out.println("Ending game now... Good-bye!");
                 System.exit(0);
-            } else if (p1. time < p2.time) {
-                System.out.println("Hooray! " + p2.name + " you have won!");
+            } else if (p1.time < p2.time) {
+                System.out.println("Hooray! " + p1.name + " you have won!");
+                waitASecond();
                 System.out.println("Ending game now... Good-bye!");
                 System.exit(0);
             } else {
                 System.out.println("Welp... I guess you guys are simply too equal :D. Bye-bye...");
                 System.exit(0);
             }
+        }
+    }
+
+    void waitASecond() {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch(InterruptedException e) {
+            System.out.println("Waiting is too hard...");
         }
     }
 }
